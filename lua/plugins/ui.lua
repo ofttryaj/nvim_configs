@@ -12,4 +12,10 @@ return {
       opts.sections.lualine_b = {}
     end,
   },
+  {
+    "lewis6991/gitsigns.nvim",
+    keys = {
+      { "<leader>ghc", require("gitsigns").toggle_current_line_blame, desc = "toggle current line blame" },
+    },
+  },
 }
