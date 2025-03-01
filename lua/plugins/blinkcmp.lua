@@ -1,13 +1,13 @@
 return {
   "saghen/blink.cmp",
-  opts = {
-    completion = {
+  opts = function(_, opts)
+    opts.completion = {
       keyword = {
         range = "full",
       },
       list = { selection = { preselect = false, auto_insert = true } },
-    },
-    keymap = {
+    }
+    opts.keymap = {
       preset = "none",
 
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -18,8 +18,8 @@ return {
       ["<C-n>"] = { "select_next", "fallback" },
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-    },
-    sources = {
+    }
+    opts.sources = {
       default = { "lsp", "path", "snippets", "buffer" },
       providers = {
         buffer = { score_offset = 3 },
@@ -27,6 +27,6 @@ return {
         path = { score_offset = 1 },
         snippets = { score_offset = 0 },
       },
-    },
-  },
+    }
+  end,
 }
