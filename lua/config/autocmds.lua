@@ -16,8 +16,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "json", "jsonc", "json5" },
   callback = function()
     vim.opt_local.conceallevel = 0
-    vim.opt.shiftwidth = 2 -- Size of an indent
-    vim.opt.tabstop = 2 -- -- Number of spaces tabs count for
-    vim.opt.softtabstop = 2
+    vim.bo.shiftwidth = 2 -- Size of an indent
+    vim.bo.tabstop = 2 -- -- Number of spaces tabs count for
+    vim.bo.softtabstop = 2
   end,
 })
+
+if vim.fn.has("autocmd") == 1 then
+  vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = "*",
+    command = [[if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
+  })
+end
